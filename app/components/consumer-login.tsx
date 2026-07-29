@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useId, useRef, useState } from "react";
 import { LOGIN_TABS } from "../lib/site-data";
 import { ArrowRightIcon } from "./icons";
 
@@ -13,23 +13,62 @@ import { ArrowRightIcon } from "./icons";
  * does not submit anywhere.
  */
 export function ConsumerLogin() {
+  const baseId = useId();
   const [active, setActive] = useState<string>(LOGIN_TABS[0].id);
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const tab = LOGIN_TABS.find((t) => t.id === active) ?? LOGIN_TABS[0];
+
+  const tabId = (id: string) => `${baseId}-tab-${id}`;
+  const panelId = (id: string) => `${baseId}-panel-${id}`;
+
+  /*
+   * A real tablist is expected to move selection with the arrow keys, with only
+   * the active tab in the tab order (roving tabindex). Without this, the widget
+   * announces itself as tabs but cannot be driven like tabs.
+   */
+  function onKeyDown(event: React.KeyboardEvent) {
+    const keys = ["ArrowRight", "ArrowLeft", "Home", "End"];
+    if (!keys.includes(event.key)) return;
+    event.preventDefault();
+
+    const index = LOGIN_TABS.findIndex((t) => t.id === active);
+    let next = index;
+    if (event.key === "ArrowRight") next = (index + 1) % LOGIN_TABS.length;
+    if (event.key === "ArrowLeft")
+      next = (index - 1 + LOGIN_TABS.length) % LOGIN_TABS.length;
+    if (event.key === "Home") next = 0;
+    if (event.key === "End") next = LOGIN_TABS.length - 1;
+
+    const nextId = LOGIN_TABS[next].id;
+    setActive(nextId);
+    tabRefs.current[nextId]?.focus();
+  }
 
   return (
     <div
       id="login"
       className="w-full max-w-md rounded-2xl border border-white/15 bg-white p-1.5 shadow-2xl shadow-brand-950/40"
     >
-      <div role="tablist" aria-label="Login type" className="flex gap-1 p-1">
+      <div
+        role="tablist"
+        aria-label="Login type"
+        onKeyDown={onKeyDown}
+        className="flex gap-1 p-1"
+      >
         {LOGIN_TABS.map((item) => {
           const isActive = item.id === active;
           return (
             <button
               key={item.id}
+              ref={(node) => {
+                tabRefs.current[item.id] = node;
+              }}
               type="button"
               role="tab"
+              id={tabId(item.id)}
               aria-selected={isActive}
+              aria-controls={panelId(item.id)}
+              tabIndex={isActive ? 0 : -1}
               onClick={() => setActive(item.id)}
               className={`flex flex-1 flex-col items-center gap-1.5 rounded-xl px-2 py-3 text-xs font-semibold transition-colors ${
                 isActive
@@ -53,18 +92,21 @@ export function ConsumerLogin() {
       </div>
 
       <form
+        role="tabpanel"
+        id={panelId(tab.id)}
+        aria-labelledby={tabId(tab.id)}
         className="space-y-3 px-4 pb-4 pt-2"
         onSubmit={(event) => event.preventDefault()}
       >
         <div>
           <label
-            htmlFor="login-id"
+            htmlFor={`${baseId}-identifier`}
             className="mb-1 block text-xs font-medium text-slate-600"
           >
             {tab.field}
           </label>
           <input
-            id="login-id"
+            id={`${baseId}-identifier`}
             name="identifier"
             type="text"
             inputMode="numeric"
@@ -74,13 +116,13 @@ export function ConsumerLogin() {
         </div>
         <div>
           <label
-            htmlFor="login-password"
+            htmlFor={`${baseId}-password`}
             className="mb-1 block text-xs font-medium text-slate-600"
           >
             Password
           </label>
           <input
-            id="login-password"
+            id={`${baseId}-password`}
             name="password"
             type="password"
             placeholder="Enter password"

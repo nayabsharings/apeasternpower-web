@@ -2,6 +2,7 @@ import Image from "next/image";
 import { BannerCarousel } from "./components/banner-carousel";
 import { ConsumerLogin } from "./components/consumer-login";
 import { ImpactBand } from "./components/impact-band";
+import { QuickPay } from "./components/quick-pay";
 import {
   ArrowRightIcon,
   BoltIcon,
@@ -28,6 +29,7 @@ export default function Home() {
     <>
       <Hero />
       <NewsTicker />
+      <QuickPay />
       <Services />
       <ImpactBand />
       <NewsAndCampaigns />
@@ -353,16 +355,21 @@ function SolarFeature() {
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
-      <div className="grid items-center gap-10 overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-700 to-emerald-900 p-8 lg:grid-cols-2 lg:p-12">
+      {/*
+        A deliberately warm, light band: it breaks up a page that is otherwise
+        dark slate, and amber suits the subject. Dark text on amber also clears
+        contrast comfortably, which white on mid-amber would not.
+      */}
+      <div className="grid items-center gap-10 overflow-hidden rounded-3xl bg-gradient-to-br from-amber-300 to-amber-500 p-8 lg:grid-cols-2 lg:p-12">
         <div>
-          <p className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-1.5 text-xs font-semibold text-emerald-50 ring-1 ring-white/20">
+          <p className="inline-flex items-center gap-2 rounded-full bg-brand-950/10 px-3.5 py-1.5 text-xs font-semibold text-brand-900 ring-1 ring-brand-950/15">
             <SunIcon className="size-3.5" />
             Rooftop Solar
           </p>
-          <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="mt-5 text-3xl font-bold tracking-tight text-brand-950 sm:text-4xl">
             Generate your own power, cut your bill
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-emerald-100">
+          <p className="mt-4 text-base leading-relaxed text-brand-800">
             Register a rooftop solar plant with APEPDCL, claim the MNRE subsidy
             and export surplus units back to the grid through net metering.
           </p>
@@ -370,7 +377,7 @@ function SolarFeature() {
             href="https://pmsuryaghar.gov.in/"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-emerald-800 transition-colors hover:bg-emerald-50"
+            className="mt-7 inline-flex items-center gap-2 rounded-full bg-brand-900 px-6 py-3.5 text-sm font-bold text-white transition-colors hover:bg-brand-950"
           >
             Register for PM Suryaghar
             <ExternalIcon className="size-4" />
@@ -381,9 +388,9 @@ function SolarFeature() {
           {points.map((point) => (
             <li
               key={point}
-              className="flex items-start gap-3 rounded-xl bg-white/10 p-4 text-sm text-emerald-50 ring-1 ring-white/10"
+              className="flex items-start gap-3 rounded-xl bg-white/40 p-4 text-sm text-brand-900 ring-1 ring-brand-950/10"
             >
-              <SunIcon className="mt-0.5 size-4 shrink-0 text-emerald-300" />
+              <SunIcon className="mt-0.5 size-4 shrink-0 text-brand-700" />
               {point}
             </li>
           ))}
@@ -559,7 +566,7 @@ function HelpStrip() {
   ];
 
   return (
-    <section id="pay" className="bg-brand-900 py-14">
+    <section id="help" className="bg-brand-900 py-14">
       <div className="mx-auto max-w-7xl px-6">
         <h2 className="text-center text-2xl font-bold tracking-tight text-white sm:text-3xl">
           Need help with your connection?

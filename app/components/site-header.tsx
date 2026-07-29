@@ -19,6 +19,8 @@ export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileGroup, setMobileGroup] = useState<string | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const drawerCloseRef = useRef<HTMLButtonElement>(null);
 
   // Close the desktop dropdown on outside click or Escape.
   useEffect(() => {
@@ -48,6 +50,29 @@ export function SiteHeader() {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
+
+  /*
+   * Move focus into the drawer when it opens and hand it back to the trigger
+   * when it closes — otherwise a keyboard user tabs into the page behind the
+   * overlay, or loses their place entirely on close.
+   */
+  useEffect(() => {
+    if (mobileOpen) {
+      drawerCloseRef.current?.focus();
+    } else if (document.activeElement === document.body) {
+      menuButtonRef.current?.focus();
+    }
+  }, [mobileOpen]);
+
+  /*
+   * Tabbing past the last item of an open dropdown should close it. Checking on
+   * the next tick lets the browser settle focus on its new target first.
+   */
+  function onNavBlur(event: React.FocusEvent<HTMLElement>) {
+    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+      setOpenGroup(null);
+    }
+  }
 
   return (
     <header className="sticky top-0 z-50">
@@ -151,10 +176,11 @@ export function SiteHeader() {
                 }
 
                 return (
-                  <li key={group.label} className="relative">
+                  <li key={group.label} className="relative" onBlur={onNavBlur}>
                     <button
                       type="button"
                       aria-expanded={isOpen}
+                      aria-haspopup="true"
                       onClick={() => setOpenGroup(isOpen ? null : group.label)}
                       className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
                         isOpen
@@ -215,9 +241,11 @@ export function SiteHeader() {
               Login
             </a>
             <button
+              ref={menuButtonRef}
               type="button"
               onClick={() => setMobileOpen(true)}
               aria-label="Open menu"
+              aria-expanded={mobileOpen}
               className="rounded-md p-2 text-brand-800 transition-colors hover:bg-brand-50 xl:hidden"
             >
               <MenuIcon className="size-6" />
@@ -231,11 +259,17 @@ export function SiteHeader() {
         <div className="fixed inset-0 z-50 xl:hidden">
           <button
             type="button"
-            aria-label="Close menu"
+            tabIndex={-1}
+            aria-hidden="true"
             onClick={() => setMobileOpen(false)}
             className="absolute inset-0 bg-brand-950/60"
           />
-          <div className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col bg-white shadow-2xl">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site menu"
+            className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col bg-white shadow-2xl"
+          >
             <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
               <span className="flex items-center gap-2 font-bold text-brand-800">
                 <Image
@@ -248,6 +282,7 @@ export function SiteHeader() {
                 {ORG.shortName}
               </span>
               <button
+                ref={drawerCloseRef}
                 type="button"
                 onClick={() => setMobileOpen(false)}
                 aria-label="Close menu"

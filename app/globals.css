@@ -5,27 +5,31 @@
     "Segoe UI", sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  /* Brand blue, taken from the official APEPDCL "e" mark */
-  --color-brand-50: #eef1fb;
-  --color-brand-100: #dde4f7;
-  --color-brand-200: #bcc8ef;
-  --color-brand-300: #94a5e2;
-  --color-brand-400: #6a80d0;
-  --color-brand-500: #4459b4;
-  --color-brand-600: #2f4494;
-  --color-brand-700: #263776;
-  --color-brand-800: #1d2b5c;
-  --color-brand-900: #16203f;
-  --color-brand-950: #0d1428;
+  /*
+   * Deep slate-blue. Sits at hue ~212 — between the logo's indigo (#2f4494)
+   * and the teal accent below, so the official blue "e" mark still reads as
+   * part of the palette rather than a foreign object in the header.
+   */
+  --color-brand-50: #eef4fa;
+  --color-brand-100: #d9e6f2;
+  --color-brand-200: #b3cbe1;
+  --color-brand-300: #85a9c9;
+  --color-brand-400: #5482ab;
+  --color-brand-500: #33628c;
+  --color-brand-600: #244d72;
+  --color-brand-700: #1c3c58;
+  --color-brand-800: #152d43;
+  --color-brand-900: #0f2032;
+  --color-brand-950: #091522;
 
-  /* Amber, reserved for primary calls to action */
-  --color-accent-50: #fffbeb;
-  --color-accent-100: #fef3c7;
-  --color-accent-300: #fcd34d;
-  --color-accent-400: #fbbf24;
-  --color-accent-500: #f59e0b;
-  --color-accent-600: #d97706;
-  --color-accent-700: #b45309;
+  /* Electric teal, reserved for primary calls to action and highlights */
+  --color-accent-50: #effdfa;
+  --color-accent-100: #cdfaf2;
+  --color-accent-300: #5eead4;
+  --color-accent-400: #2dd4bf;
+  --color-accent-500: #14b8a6;
+  --color-accent-600: #0d9488;
+  --color-accent-700: #0f766e;
 
   --animate-scroll-y: scroll-y 50s linear infinite;
   --animate-ticker: ticker 45s linear infinite;
@@ -60,6 +64,23 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/*
+ * The header is sticky, so an anchor jump would otherwise land with the target
+ * heading hidden underneath it. Offset by roughly the header's height — taller
+ * on large screens, where the statutory utility strip is also visible.
+ */
+section[id],
+:target {
+  scroll-margin-top: 5rem;
+}
+
+@media (min-width: 1024px) {
+  section[id],
+  :target {
+    scroll-margin-top: 7rem;
+  }
 }
 
 body {
