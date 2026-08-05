@@ -40,7 +40,7 @@ export function QuickPay() {
   }
 
   return (
-    <section id="pay" className="border-b border-slate-200 bg-brand-50/60">
+    <section id="pay" className="border-b border-stone-200 bg-brand-50/60">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-14 lg:grid-cols-[1fr_1.1fr] lg:py-16">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-500">
@@ -49,12 +49,12 @@ export function QuickPay() {
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-brand-900 sm:text-4xl">
             Pay your electricity bill
           </h2>
-          <p className="mt-3 text-base leading-relaxed text-slate-600">
+          <p className="mt-3 text-base leading-relaxed text-stone-600">
             No login needed. Enter the number printed on your bill to view the
             amount due and pay it online.
           </p>
 
-          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-600">
+          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-stone-600">
             <li className="flex items-center gap-2">
               <ShieldIcon className="size-4 text-accent-700" />
               Secure payment gateway
@@ -66,7 +66,7 @@ export function QuickPay() {
           </ul>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <div className="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm sm:p-8">
           <form onSubmit={onSubmit} noValidate>
             <label
               htmlFor={inputId}
@@ -74,7 +74,7 @@ export function QuickPay() {
             >
               Service No. / Mobile No. / Aadhaar No.
             </label>
-            <p id={noteId} className="mt-1 text-xs text-slate-500">
+            <p id={noteId} className="mt-1 text-xs text-stone-500">
               Your service number appears at the top of your printed bill.
             </p>
 
@@ -93,10 +93,10 @@ export function QuickPay() {
                 aria-invalid={error ? true : undefined}
                 aria-describedby={error ? `${noteId} ${errorId}` : noteId}
                 placeholder="e.g. 1234567890"
-                className={`w-full rounded-lg border px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:ring-2 ${
+                className={`w-full rounded-lg border px-4 py-3 text-sm text-stone-800 placeholder:text-stone-400 focus:ring-2 ${
                   error
                     ? "border-red-400 focus:border-red-500 focus:ring-red-100"
-                    : "border-slate-300 focus:border-brand-500 focus:ring-brand-100"
+                    : "border-stone-300 focus:border-brand-500 focus:ring-brand-100"
                 }`}
               />
               <button
@@ -130,19 +130,19 @@ export function QuickPay() {
             )}
           </form>
 
-          <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-slate-100 pt-4 text-xs text-slate-500">
-            <span className="font-semibold text-slate-600">We accept</span>
+          <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-stone-100 pt-4 text-xs text-stone-500">
+            <span className="font-semibold text-stone-600">We accept</span>
             {["UPI", "Debit card", "Credit card", "Net banking"].map((method) => (
               <span
                 key={method}
-                className="rounded-full bg-slate-100 px-2.5 py-1 font-medium text-slate-600"
+                className="rounded-full bg-stone-100 px-2.5 py-1 font-medium text-stone-600"
               >
                 {method}
               </span>
             ))}
           </div>
 
-          <p className="mt-4 text-xs text-slate-500">
+          <p className="mt-4 text-xs text-stone-500">
             Paying an estimate or service charge instead?{" "}
             <a
               href="#services"

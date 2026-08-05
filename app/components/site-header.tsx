@@ -135,7 +135,7 @@ export function SiteHeader() {
       {/* Masthead + primary navigation */}
       <div
         ref={navRef}
-        className="border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85"
+        className="border-b border-stone-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85"
       >
         <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6">
           <Link href="/" className="flex shrink-0 items-center gap-3">
@@ -151,7 +151,7 @@ export function SiteHeader() {
               <span className="block text-lg font-bold tracking-tight text-brand-800">
                 {ORG.shortName}
               </span>
-              <span className="hidden max-w-[22rem] text-[11px] text-slate-500 sm:block">
+              <span className="hidden max-w-[22rem] text-[11px] text-stone-500 sm:block">
                 {ORG.name}
               </span>
             </span>
@@ -167,7 +167,7 @@ export function SiteHeader() {
                     <li key={group.label}>
                       <Link
                         href={group.href ?? "#"}
-                        className="rounded-md px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-brand-50 hover:text-brand-700"
+                        className="rounded-md px-3 py-2 text-sm font-medium text-stone-700 transition-colors hover:bg-brand-50 hover:text-brand-700"
                       >
                         {group.label}
                       </Link>
@@ -185,7 +185,7 @@ export function SiteHeader() {
                       className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
                         isOpen
                           ? "bg-brand-50 text-brand-700"
-                          : "text-slate-700 hover:bg-brand-50 hover:text-brand-700"
+                          : "text-stone-700 hover:bg-brand-50 hover:text-brand-700"
                       }`}
                     >
                       {group.label}
@@ -196,7 +196,7 @@ export function SiteHeader() {
                       />
                     </button>
                     {isOpen && (
-                      <div className="absolute left-0 top-full z-50 mt-1 w-72 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl shadow-brand-900/10">
+                      <div className="absolute left-0 top-full z-50 mt-1 w-72 overflow-hidden rounded-xl border border-stone-200 bg-white shadow-xl shadow-brand-900/10">
                         <ul className="py-1.5">
                           {group.items.map((item) => (
                             <li key={item.label}>
@@ -209,7 +209,7 @@ export function SiteHeader() {
                                     : undefined
                                 }
                                 onClick={() => setOpenGroup(null)}
-                                className="flex items-center justify-between gap-2 px-4 py-2 text-sm text-slate-600 transition-colors hover:bg-brand-50 hover:text-brand-700"
+                                className="flex items-center justify-between gap-2 px-4 py-2 text-sm text-stone-600 transition-colors hover:bg-brand-50 hover:text-brand-700"
                               >
                                 {item.label}
                                 {item.external && (
@@ -270,7 +270,7 @@ export function SiteHeader() {
             aria-label="Site menu"
             className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col bg-white shadow-2xl"
           >
-            <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+            <div className="flex items-center justify-between border-b border-stone-200 px-5 py-4">
               <span className="flex items-center gap-2 font-bold text-brand-800">
                 <Image
                   src="/brand/logo.png"
@@ -286,7 +286,7 @@ export function SiteHeader() {
                 type="button"
                 onClick={() => setMobileOpen(false)}
                 aria-label="Close menu"
-                className="rounded-md p-2 text-slate-500 hover:bg-slate-100"
+                className="rounded-md p-2 text-stone-500 hover:bg-stone-100"
               >
                 <CloseIcon className="size-5" />
               </button>
@@ -301,7 +301,7 @@ export function SiteHeader() {
                         <Link
                           href={group.href ?? "#"}
                           onClick={() => setMobileOpen(false)}
-                          className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-800 hover:bg-brand-50"
+                          className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-stone-800 hover:bg-brand-50"
                         >
                           {group.label}
                         </Link>
@@ -315,17 +315,17 @@ export function SiteHeader() {
                         type="button"
                         aria-expanded={isOpen}
                         onClick={() => setMobileGroup(isOpen ? null : group.label)}
-                        className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-800 hover:bg-brand-50"
+                        className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-semibold text-stone-800 hover:bg-brand-50"
                       >
                         {group.label}
                         <ChevronDownIcon
-                          className={`size-4 text-slate-400 transition-transform ${
+                          className={`size-4 text-stone-400 transition-transform ${
                             isOpen ? "rotate-180" : ""
                           }`}
                         />
                       </button>
                       {isOpen && (
-                        <ul className="mb-1 ml-3 border-l border-slate-200 pl-3">
+                        <ul className="mb-1 ml-3 border-l border-stone-200 pl-3">
                           {group.items.map((item) => (
                             <li key={item.label}>
                               <a
@@ -337,7 +337,7 @@ export function SiteHeader() {
                                     : undefined
                                 }
                                 onClick={() => setMobileOpen(false)}
-                                className="block py-2 text-sm text-slate-600 hover:text-brand-700"
+                                className="block py-2 text-sm text-stone-600 hover:text-brand-700"
                               >
                                 {item.label}
                               </a>
@@ -351,7 +351,7 @@ export function SiteHeader() {
               </ul>
             </nav>
 
-            <div className="space-y-2 border-t border-slate-200 px-5 py-4">
+            <div className="space-y-2 border-t border-stone-200 px-5 py-4">
               <a
                 href="#pay"
                 onClick={() => setMobileOpen(false)}

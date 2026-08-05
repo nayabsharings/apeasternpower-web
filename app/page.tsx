@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { BannerCarousel } from "./components/banner-carousel";
 import { ConsumerLogin } from "./components/consumer-login";
+import { HeroBackdrop } from "./components/hero-backdrop";
 import { ImpactBand } from "./components/impact-band";
 import { QuickPay } from "./components/quick-pay";
 import {
@@ -51,6 +52,18 @@ function Hero() {
         aria-hidden="true"
         className="absolute inset-0 bg-[radial-gradient(60rem_40rem_at_15%_-10%,var(--color-brand-600),transparent_65%),radial-gradient(50rem_35rem_at_95%_10%,var(--color-brand-700),transparent_60%)]"
       />
+      {/* Drifting pylons and energy pulses */}
+      <HeroBackdrop />
+
+      {/*
+        Scrim over the artwork, heaviest on the left where the headline sits, so
+        a passing gold pulse can never erode the text contrast.
+      */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-r from-brand-800 via-brand-800/80 to-brand-800/25"
+      />
+
       <div
         aria-hidden="true"
         className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:56px_56px]"
@@ -146,7 +159,7 @@ function looped<T>(items: readonly T[]) {
 
 function NewsTicker() {
   return (
-    <div className="border-b border-slate-200 bg-brand-50">
+    <div className="border-b border-stone-200 bg-brand-50">
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 py-2.5">
         <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-brand-600 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">
           <span className="size-1.5 animate-pulse rounded-full bg-accent-400" />
@@ -158,7 +171,7 @@ function NewsTicker() {
               <li
                 key={`${item.date}-${i}`}
                 aria-hidden={duplicate || undefined}
-                className="flex items-center gap-2 whitespace-nowrap text-sm text-slate-600"
+                className="flex items-center gap-2 whitespace-nowrap text-sm text-stone-600"
               >
                 <span className="font-mono text-xs text-brand-500">
                   {item.date}
@@ -198,7 +211,7 @@ function SectionHeading({
       <h2 className="mt-2 text-3xl font-bold tracking-tight text-brand-900 sm:text-4xl">
         {title}
       </h2>
-      {body && <p className="mt-3 text-base leading-relaxed text-slate-600">{body}</p>}
+      {body && <p className="mt-3 text-base leading-relaxed text-stone-600">{body}</p>}
     </div>
   );
 }
@@ -218,7 +231,7 @@ function Services() {
           return (
             <article
               key={group.title}
-              className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-lg hover:shadow-brand-900/5"
+              className="group flex flex-col rounded-2xl border border-stone-200 bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-lg hover:shadow-brand-900/5"
             >
               <span className="flex size-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white">
                 <Icon className="size-6" />
@@ -226,17 +239,17 @@ function Services() {
               <h3 className="mt-4 text-lg font-semibold text-brand-900">
                 {group.title}
               </h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-slate-600">
+              <p className="mt-1.5 text-sm leading-relaxed text-stone-600">
                 {group.blurb}
               </p>
-              <ul className="mt-4 space-y-2 border-t border-slate-100 pt-4">
+              <ul className="mt-4 space-y-2 border-t border-stone-100 pt-4">
                 {group.links.map((link) => (
                   <li key={link.label}>
                     <a
                       href={link.href}
                       target={link.external ? "_blank" : undefined}
                       rel={link.external ? "noopener noreferrer" : undefined}
-                      className="flex items-start gap-2 text-sm text-slate-600 transition-colors hover:text-brand-700"
+                      className="flex items-start gap-2 text-sm text-stone-600 transition-colors hover:text-brand-700"
                     >
                       <ArrowRightIcon className="mt-0.5 size-3.5 shrink-0 text-brand-300" />
                       <span>{link.label}</span>
@@ -259,7 +272,7 @@ function Services() {
 
 function NewsAndCampaigns() {
   return (
-    <section className="bg-slate-50 py-16 lg:py-20">
+    <section className="bg-stone-50 py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading
           eyebrow="Newsroom"
@@ -268,8 +281,8 @@ function NewsAndCampaigns() {
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_1.15fr]">
           {/* Auto-scrolling news list — the modern stand-in for the marquee */}
-          <div className="flex flex-col rounded-2xl border border-slate-200 bg-white">
-            <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
+          <div className="flex flex-col rounded-2xl border border-stone-200 bg-white">
+            <div className="flex items-center justify-between border-b border-stone-100 px-5 py-4">
               <h3 className="flex items-center gap-2 font-semibold text-brand-900">
                 <FileIcon className="size-5 text-brand-500" />
                 Latest News
@@ -288,12 +301,12 @@ function NewsAndCampaigns() {
                   <li
                     key={`${item.date}-${i}`}
                     aria-hidden={duplicate || undefined}
-                    className="border-b border-slate-100 px-5 py-4"
+                    className="border-b border-stone-100 px-5 py-4"
                   >
                     <p className="text-xs font-semibold text-brand-500">
                       {item.date}
                     </p>
-                    <p className="mt-1 text-sm leading-relaxed text-slate-700">
+                    <p className="mt-1 text-sm leading-relaxed text-stone-700">
                       {item.title}
                     </p>
                     <span className="mt-1.5 inline-flex items-center gap-1 text-xs font-semibold text-brand-600">
@@ -319,7 +332,7 @@ function NewsAndCampaigns() {
               <p className="text-xs font-bold uppercase tracking-wider text-accent-700">
                 Announcement
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">
+              <p className="mt-2 text-sm leading-relaxed text-stone-700">
                 <strong className="font-semibold text-brand-900">
                   PM — SURYA GHAR: MUFT BIJLI YOJANA
                 </strong>{" "}
@@ -357,10 +370,10 @@ function SolarFeature() {
     <section className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
       {/*
         A deliberately warm, light band: it breaks up a page that is otherwise
-        dark slate, and amber suits the subject. Dark text on amber also clears
-        contrast comfortably, which white on mid-amber would not.
+        deep green, and gold suits the subject. Dark text on gold also clears
+        contrast comfortably, which white on mid-gold would not.
       */}
-      <div className="grid items-center gap-10 overflow-hidden rounded-3xl bg-gradient-to-br from-amber-300 to-amber-500 p-8 lg:grid-cols-2 lg:p-12">
+      <div className="grid items-center gap-10 overflow-hidden rounded-3xl bg-gradient-to-br from-accent-300 to-accent-500 p-8 lg:grid-cols-2 lg:p-12">
         <div>
           <p className="inline-flex items-center gap-2 rounded-full bg-brand-950/10 px-3.5 py-1.5 text-xs font-semibold text-brand-900 ring-1 ring-brand-950/15">
             <SunIcon className="size-3.5" />
@@ -404,7 +417,7 @@ function SolarFeature() {
 
 function QuickFacts() {
   return (
-    <section className="border-y border-slate-200 bg-white py-16 lg:py-20">
+    <section className="border-y border-stone-200 bg-white py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeading
           eyebrow="Quick Facts"
@@ -412,12 +425,12 @@ function QuickFacts() {
           body="Distribution infrastructure operated across the eleven districts of eastern Andhra Pradesh."
         />
 
-        <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-slate-200 sm:grid-cols-3 lg:grid-cols-4">
+        <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-stone-200 sm:grid-cols-3 lg:grid-cols-4">
           {QUICK_FACTS.map((fact) => {
             const isLink = fact.href !== "#";
             const inner = (
               <>
-                <dt className="text-sm text-slate-600">{fact.label}</dt>
+                <dt className="text-sm text-stone-600">{fact.label}</dt>
                 <dd className="mt-1 text-2xl font-bold tracking-tight text-brand-800 tabular-nums sm:text-3xl">
                   {fact.value}
                 </dd>
@@ -463,7 +476,7 @@ function MobileApp() {
 
   return (
     <section id="app" className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
-      <div className="grid items-center gap-10 rounded-3xl border border-slate-200 bg-slate-50 p-8 lg:grid-cols-2 lg:p-12">
+      <div className="grid items-center gap-10 rounded-3xl border border-stone-200 bg-stone-50 p-8 lg:grid-cols-2 lg:p-12">
         <div>
           <SectionHeading
             eyebrow="Eastern Power App"
@@ -475,7 +488,7 @@ function MobileApp() {
             {features.map((feature) => (
               <li
                 key={feature}
-                className="flex items-start gap-2 text-sm text-slate-700"
+                className="flex items-start gap-2 text-sm text-stone-700"
               >
                 <BoltIcon className="mt-0.5 size-4 shrink-0 text-accent-500" />
                 {feature}
@@ -489,7 +502,7 @@ function MobileApp() {
             href={APP_LINKS.android}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-center transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-lg hover:shadow-brand-900/5"
+            className="flex flex-col items-center gap-3 rounded-2xl border border-stone-200 bg-white p-6 text-center transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-lg hover:shadow-brand-900/5"
           >
             <Image
               src="/brand/android.png"
@@ -500,7 +513,7 @@ function MobileApp() {
             />
             <span className="text-sm font-semibold text-brand-900">
               Android
-              <span className="mt-0.5 block text-xs font-normal text-slate-500">
+              <span className="mt-0.5 block text-xs font-normal text-stone-500">
                 Google Play Store
               </span>
             </span>
@@ -509,7 +522,7 @@ function MobileApp() {
             href={APP_LINKS.ios}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center gap-3 rounded-2xl border border-slate-200 bg-white p-6 text-center transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-lg hover:shadow-brand-900/5"
+            className="flex flex-col items-center gap-3 rounded-2xl border border-stone-200 bg-white p-6 text-center transition-all hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-lg hover:shadow-brand-900/5"
           >
             <Image
               src="/brand/ios.png"
@@ -520,7 +533,7 @@ function MobileApp() {
             />
             <span className="text-sm font-semibold text-brand-900">
               iOS
-              <span className="mt-0.5 block text-xs font-normal text-slate-500">
+              <span className="mt-0.5 block text-xs font-normal text-stone-500">
                 Apple App Store
               </span>
             </span>

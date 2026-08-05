@@ -34,14 +34,14 @@ export function BannerCarousel() {
 
   return (
     <div
-      className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+      className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
       <div
-        className="relative aspect-[1600/400] w-full bg-slate-100"
+        className="relative aspect-[1600/400] w-full bg-stone-100"
         aria-live="polite"
       >
         {BANNERS.map((item, i) => (
@@ -59,12 +59,12 @@ export function BannerCarousel() {
         ))}
       </div>
 
-      <div className="flex flex-col gap-3 border-t border-slate-100 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 border-t border-stone-100 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h3 className="text-base font-semibold text-brand-800">
             {banner.title}
           </h3>
-          <p className="mt-0.5 text-sm text-slate-600">{banner.body}</p>
+          <p className="mt-0.5 text-sm text-stone-600">{banner.body}</p>
           {banner.cta && (
             <a
               href={banner.cta.href}
@@ -89,7 +89,7 @@ export function BannerCarousel() {
               className={`h-2 rounded-full transition-all ${
                 i === index
                   ? "w-6 bg-brand-600"
-                  : "w-2 bg-slate-300 hover:bg-slate-400"
+                  : "w-2 bg-stone-300 hover:bg-stone-400"
               }`}
             />
           ))}

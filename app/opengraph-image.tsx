@@ -21,16 +21,16 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px",
-          background: "linear-gradient(135deg, #1c3c58 0%, #091522 100%)",
+          background: "linear-gradient(135deg, #0c5438 0%, #051f15 100%)",
           fontFamily: "sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
           <svg width="76" height="76" viewBox="0 0 24 24">
-            <rect width="24" height="24" rx="5.5" fill="#2dd4bf" />
+            <rect width="24" height="24" rx="5.5" fill="#f2c144" />
             <path
               d="M14 3.6 6.8 13.9h4.8l-1 6.5 6.6-9.6h-4.4L14 3.6Z"
-              fill="#091522"
+              fill="#051f15"
             />
           </svg>
           <div style={{ display: "flex", flexDirection: "column" }}>
@@ -39,7 +39,7 @@ export default function OpengraphImage() {
             >
               {ORG.shortName}
             </span>
-            <span style={{ fontSize: 20, color: "#85a9c9", marginTop: 4 }}>
+            <span style={{ fontSize: 20, color: "#63c99b", marginTop: 4 }}>
               {ORG.name}
             </span>
           </div>
@@ -57,7 +57,7 @@ export default function OpengraphImage() {
           >
             {ORG.tagline}
           </span>
-          <span style={{ fontSize: 26, color: "#b3cbe1", marginTop: 24 }}>
+          <span style={{ fontSize: 26, color: "#a3e3c4", marginTop: 24 }}>
             Serving 11 districts of eastern Andhra Pradesh
           </span>
         </div>
@@ -69,11 +69,11 @@ export default function OpengraphImage() {
                 key={item}
                 style={{
                   fontSize: 22,
-                  color: "#2dd4bf",
-                  border: "1px solid #1c3c58",
+                  color: "#f2c144",
+                  border: "1px solid #0c5438",
                   borderRadius: 999,
                   padding: "10px 22px",
-                  background: "rgba(45, 212, 191, 0.08)",
+                  background: "rgba(242, 193, 68, 0.10)",
                 }}
               >
                 {item}
